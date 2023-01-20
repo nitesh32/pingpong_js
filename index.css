@@ -1,0 +1,56 @@
+
+body {
+    height: 90vh;
+    border: 4px dashed #003700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSieTEr68hXTXuBzW64SbXAZR12-TkEQbk6Vg&usqp=CAU);
+  background-size: cover;
+}
+/* rgb(159, 1, 1) */
+#ball {
+    top: 50%;
+    position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 30%;
+  background-color: #003700;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+#rod-one{
+  height: 20px;
+  width: 220px;
+  background-color: #003700;
+  position: absolute;
+  top:0px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#rod-two{
+  height: 20px;
+  width: 220px;
+  background-color: #003700;
+  position: absolute;
+  bottom:0px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+#notification{
+    scale: 2;
+    background-color: aliceblue;
+    opacity: 0.5;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
