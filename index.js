@@ -3,41 +3,40 @@ var rodOne = document.getElementById("rod-one");
 var rodTwo = document.getElementById("rod-two");
 var deta_rod = rodOne.getBoundingClientRect();
 var leftPos = deta_rod.left;
-const default_left=deta_rod.left;
+const default_left = deta_rod.left;
 var score = 0;
-var max_score=0;
+var max_score = 0;
 var going = 0;
-var winner=2;
-max_score_holder=2;
-// to show notification 
-var showNotification=document.getElementById("notification");
+var winner = 2;
+max_score_holder = 2;
+// to show notification
+var showNotification = document.getElementById("notification");
 
-function set(val){
-  var t=0;
-  var id=setInterval(function(){
-      showNotification.innerHTML=val;
-      showNotification.style.display="block";
-      showNotification.style.scale=t;
-      showNotification.style.transition="1s";
-      t+=2;
-      if(t==4){
-        clearInterval(id);
-      }
-  },300);
-  
+function set(val) {
+  var t = 0;
+  var id = setInterval(function () {
+    showNotification.innerHTML = val;
+    showNotification.style.display = "block";
+    showNotification.style.scale = t;
+    showNotification.style.transition = "1s";
+    t += 2;
+    if (t == 4) {
+      clearInterval(id);
+    }
+  }, 300);
 }
-set("Press Enter to start game");
+set("Press Enter to start game and A and D to play");
 
-function notificationdone(){
-    var id=setInterval(function(){
-          showNotification.style.scale=0;
-          showNotification.style.transition="1s";
-          // showNotification.style.display="none";
-            clearInterval(id);
-    },300);
+function notificationdone() {
+  var id = setInterval(function () {
+    showNotification.style.scale = 0;
+    showNotification.style.transition = "1s";
+    // showNotification.style.display="none";
+    clearInterval(id);
+  }, 300);
 }
 
-// keypress events 
+// keypress events
 document.addEventListener("keydown", function (event) {
   var deta_body = document.body.getBoundingClientRect();
   var maxWidth = 8 + deta_body.width - 236;
@@ -53,14 +52,11 @@ document.addEventListener("keydown", function (event) {
     }
   }
   if (event.key == "Enter") {
-    
-
     if (going == 0) {
-        notificationdone();
-      leftPos=default_left;
+      notificationdone();
+      leftPos = default_left;
       go();
     }
-    
   }
   rodOne.style.left = leftPos + "px";
   rodTwo.style.left = leftPos + "px";
@@ -73,11 +69,11 @@ function go() {
     bl = 0,
     br = 1;
   going = 1;
-      ball.style.top = "50%";
-      ball.style.left = "30%";
-      ball.style.backgroundColor= "#003700";
-      document.body.style.border="4px dashed #003700";
-  
+  ball.style.top = "50%";
+  ball.style.left = "30%";
+  ball.style.backgroundColor = "#003700";
+  document.body.style.border = "4px dashed #003700";
+
   var start = setInterval(function () {
     // current data of ball and rodes
     var data_ball = ball.getBoundingClientRect();
@@ -150,23 +146,28 @@ function go() {
     var data_body = document.body.getBoundingClientRect();
     if (data_ball.top <= 0 || data_ball.top >= data_body.height - 12) {
       ball.style.backgroundColor = "rgb(159, 1, 1)";
-      document.body.style.border="4px dashed rgb(159, 1, 1)";
+      document.body.style.border = "4px dashed rgb(159, 1, 1)";
       going = 0;
-      if(data_ball.top<=100){
-        winner=2;
+      if (data_ball.top <= 100) {
+        winner = 2;
+      } else {
+        winner = 1;
       }
-      else{
-        winner=1;
+      if (score > max_score) {
+        set("Rod-" + winner + " has maximum score: " + score);
+        max_score = score;
+        max_score_holder = winner;
+      } else {
+        set(
+          "Rod-" +
+            winner +
+            " win with score of " +
+            score +
+            " maximum score is " +
+            max_score
+        );
       }
-      if(score>max_score){
-        set("Rod-"+winner+" has maximum score: "+score);
-        max_score=score;
-        max_score_holder=winner;
-      }
-      else{
-      set("Rod-"+winner+" win with score of "+score+" maximum score is "+max_score);
-      }
-      score=0;
+      score = 0;
       clearInterval(start);
     }
     // console.log(data_body.height);
